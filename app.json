@@ -2,25 +2,30 @@
   "expo": {
     "name": "galaxy-explorer",
     "slug": "galaxy-explorer",
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3A363F"
+    },
+
+    "androidStatusBar": {
+      "backgroundColor": "#3A363F",
+      "translucent": true,
+      "barStyle": "light-content",
+      "hidden": false
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "requireFullScreen": true
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "android": {}
   }
 }
