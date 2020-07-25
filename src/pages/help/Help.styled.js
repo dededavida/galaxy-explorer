@@ -12,6 +12,7 @@ export const Title = styled.Text`
 `;
 export const Span = styled.Text`
   font-weight: bold;
+  text-decoration: underline;
 `;
 export const Description = styled.Text`
   font-weight: 500;

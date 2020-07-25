@@ -17,20 +17,28 @@ import {
 import { useAuth } from "../../contexts/AuthProvider";
 import { MaterialIcons } from "@expo/vector-icons";
 import DropdownAlert from "react-native-dropdownalert";
+import Expo, { Constants } from "expo";
 
 export default function SignIn() {
   const { signIn } = useAuth();
   const dropdownRef = useRef();
 
-  function authFaceIdOrTouchId() {
+  async function authFaceIdOrTouchId() {
+    const comp = await LocalAuthentication.hasHardwareAsync();
+    console.log(comp);
+    const s = await LocalAuthentication.supportedAuthenticationTypesAsync();
+    console.log(s);
+    const teste = await LocalAuthentication.isEnrolledAsync();
+    console.log(teste);
+
     LocalAuthentication.authenticateAsync({
-      promptMessage: "Autenticação Digital",
+      promptMessage: "Acesse via Rosto ou Digital",
       cancelLabel: "Entrar com senha",
+      disableDeviceFallback: true,
     }).then((auth) => {
       if (auth.success) {
         signIn();
       } else {
-        signIn();
         if (auth.error == "lockout") {
           dropdownRef.current.alertWithType(
             "error",
@@ -41,8 +49,6 @@ export default function SignIn() {
       }
     });
   }
-
-  async function handleSms() {}
 
   return (
     <StyeldSignIn>
@@ -58,7 +64,8 @@ export default function SignIn() {
         <Title>Bem vindo</Title>
         <Subtitle>Galaxy Explorer</Subtitle>
         <Description>
-          Aplicação criada para efetuar o login atráves da impressão digital
+          Aplicação criada para efetuar o login atráves da impressão digital ou
+          reconhecimento facial
         </Description>
       </ContainerInfo>
       <ContainerButtons>
@@ -67,13 +74,9 @@ export default function SignIn() {
           onPress={authFaceIdOrTouchId}
         >
           <ContainerButtonTouchId>
-            <MaterialIcons name="fingerprint" size={24} color="#ccc" />
-            <TextTouchId>Smart ID</TextTouchId>
+            <TextTouchId>Acessar</TextTouchId>
           </ContainerButtonTouchId>
         </ButtonTouchId>
-        {/* <ButtonFaceId underlayColor="#f185be" onPress={handleSms}>
-          <TextFaceId>Enviar SMS</TextFaceId>
-        </ButtonFaceId> */}
       </ContainerButtons>
       <DropdownAlert ref={dropdownRef} />
     </StyeldSignIn>

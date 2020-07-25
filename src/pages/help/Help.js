@@ -11,8 +11,8 @@ export default function Help() {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Title>Gostaria de saber mais?</Title>
         <Description>
-          acesse o meu github:
-          <Span onPress={handlePressButtonAsync}> daviddossantos</Span>
+          {`acesse o meu github: `}
+          <Span onPress={handlePressButtonAsync}>daviddossantos</Span>
         </Description>
       </View>
     </Container>

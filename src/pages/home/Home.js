@@ -15,7 +15,8 @@ export default function Home() {
         <Title>O Projeto</Title>
         <Description>
           Esse projeto foi criado com intuito de exercitar os conhecimentos em
-          React, foi implementado autenticação por meio da impressão digital.
+          React, foi implementado autenticação por meio da impressão digital ou
+          reconhecimento facial
         </Description>
         <View style={{ marginTop: 10 }}>
           <TitleTechnologies>Tecnologias utilizadas:</TitleTechnologies>
